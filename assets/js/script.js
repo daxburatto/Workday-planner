@@ -1,40 +1,81 @@
-$(document).ready(function () {  
-    const test = false
-
-    var now = moment().format('MMMM Do YYYY')
-
-    let nowHour24 = moment().format('H')
-    let nowHour12 = moment().format('h')
-
-    if (test) {
-        nowHour24 = 13,
-        nowHour12 = 1
+$(document).ready(function () {
+    // display current date using moment
+    var clock = function () {
+        // format header date var
+        var currentHeaderDate = moment().format('MMMM Do YYYY')
+        // display headerDate over currentDay
+        $("#currentDay").text(currentHeaderDate)
+        console.log(currentHeaderDate)
     }
 
-    let $dateHeading = $('#currentDay')
-    $dateHeading.text(now)
+    getTasks = function (taskHour, taskTitle) {  
+        var dayTask = $("#task-title").val()
+        var dayHour = $("#taskHour").val()
+
+        $("<textarea>").text("Enter a task")
+        console.log(dayTask, dayHour)
+            
+
+    }
+    
+    saveTasks = function () {  
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+    }
+
+    loadTasks = function () {  
+        tasks = JSON.parse(localStorage.getItem("tasks"))
+    
+        if (!tasks) {
+            tasks = {
+                taskTitle: [],
+            }
+        }
+
+        $.each(tasks, function (list, arr) {  
+            console.log(list, arr)
+            arr.forEach(function (task) {
+                setTasks(taskTitle)
+                console.log(taskTitle)
+            })
+        })
+    }
+
+    var updateDayColor = function () {
+        var currentHour = moment().hours()
+
+        $(".list-group").each(function () {
+            var taskHour = $(this)
+                if (taskHour == currentHour) {
+                $(".list-group-item").addClass("bg-warning")
+                } else if (taskHour < currentHour) {
+                $(".list-group-item").addClass("bg-danger")
+                } else {
+                $(".list-group-item").addClass("bg-light")
+                }
+        })
+        
+    }
+
+    updateDayColor()
+    clock()
+    getTasks()
 })
 
-var tasks = {}
 
-var loadTasks = function () {  
-    tasks = JSON.parse(localStorage.getItem("tasks"))
-
-    if (!tasks) {
-        tasks = {
-            taskTitle: [],
-            taskDesc: []
-        }
+// function to update row color
+var updateRowColor = function ($hourRow, hour) {
+    if (test) {console.log("rowcolor", nowHour24, hour)}
+    if (hour < nowHour24) {
+        if (test) {console.log("lessThan")}
+        $hourRow.css("background-color", "lightgrey")
+    } else if (hour > nowHour24) {
+        if (test) {console.log("greaterThan")}
+        $hourRow.css("background-color", "list-group-item-danger")
+    } else {
+        if (test) {console.log("equal")}
+        $hourRow.css("background-color", "list-group-item-warning")
     }
-
-
 }
-
-var saveTasks = function () {  
-    localStorage.setItem("tasks", JSON.stringify(tasks))
-}
-
-$("#currentDay").
 
 // task text was clicked
 $(".list-group-item").on("click", "p", "small", function () {  
