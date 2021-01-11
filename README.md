@@ -3,7 +3,7 @@
 This workday planner can help you keep track of any tasks you wish to get done within a normal 9-5 job.
 The planner is unfinished and currently in development.
 
-Link to planner -> [Workday-Planner]()
+Link to planner -> [Workday-Planner](https://daxburatto.github.io/Workday-planner/)
 
 ## What I Need To Add
 
