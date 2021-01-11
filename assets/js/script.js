@@ -18,7 +18,7 @@ $(document).ready(function () {
     
         
     }
-
+    // save task when save-btn is clicked
     $("#task1 save-btn1").click(function () {  
         // get form values
         var taskTitle = $("#task-title2").val()
@@ -29,6 +29,7 @@ $(document).ready(function () {
     })
 
     /* commenting out to work on something else
+    // save button tries to save task on click
     $(".saveBtn").on("click", function (event) {  
         event.preventDefault()
         var savedTask = $(this).siblings(".task-title").attr("id")
@@ -37,11 +38,12 @@ $(document).ready(function () {
         loadTasks()
     })
     */
-
+    // change color of task if it is nearing due time
     var updateDayColor = function () {
+        // trying to get current hour from list
         var currentHour = moment().hours()
         var taskHour = $("")
-
+        // for each taskHour mark warning, danger or normal
         $(".taskHour").each(function () {
             var taskHour = $(".taskHour").val()
             console.log(this)
@@ -53,7 +55,7 @@ $(document).ready(function () {
                 $(".list-group-item").addClass("bg-light")
             })
         }
-
+    // event listeners
     updateDayColor()
     clock()
 })
