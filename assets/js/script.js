@@ -19,6 +19,16 @@ $(document).ready(function () {
         
     }
 
+    $("#task1 save-btn1").click(function () {  
+        // get form values
+        var taskTitle = $("#task-title2").val()
+        var taskTime = $("#taskHour1").val()
+
+        saveTasks()
+        console.log(taskTitle, taskTime)
+    })
+
+    /* commenting out to work on something else
     $(".saveBtn").on("click", function (event) {  
         event.preventDefault()
         var savedTask = $(this).siblings(".task-title").attr("id")
@@ -26,7 +36,7 @@ $(document).ready(function () {
         saveTasks()
         loadTasks()
     })
-    
+    */
 
     var updateDayColor = function () {
         var currentHour = moment().hours()
